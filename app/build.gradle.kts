@@ -76,4 +76,8 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
+
+
+    implementation("com.google.android.gms:play-services-auth:21.4.0")
+
 }
