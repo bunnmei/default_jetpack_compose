@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,6 +7,14 @@ plugins {
 
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+
+    id("com.google.gms.google-services")
+}
+
+val keyProperties = Properties()
+val keyPropertiesFile = rootProject.file("key.properties")
+if (keyPropertiesFile.exists()) {
+    keyProperties.load(keyPropertiesFile.inputStream())
 }
 
 android {
@@ -19,6 +29,28 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(keyProperties.getProperty("storeFile") ?: "")
+            storePassword = keyProperties.getProperty("storePassword") ?: ""
+            keyAlias = keyProperties.getProperty("keyAlias") ?: ""
+            keyPassword = keyProperties.getProperty("keyPassword") ?: ""
+        }
+    }
+
+    val PRODUCT_PACKAGE_NAME = "space.webkombinat.defaultjetpackcompose"
+    flavorDimensions += "env"
+    productFlavors {
+        create("develop") {
+            dimension = "env"
+            applicationId = PRODUCT_PACKAGE_NAME
+        }
+        create("product") {
+            dimension = "env"
+            applicationId = PRODUCT_PACKAGE_NAME
+        }
     }
 
     buildTypes {
@@ -43,6 +75,10 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":feature:compass"))
+    implementation(project(":feature:login"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -77,7 +113,7 @@ dependencies {
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
 
-
-    implementation("com.google.android.gms:play-services-auth:21.4.0")
+    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
+    implementation("com.google.firebase:firebase-auth")
 
 }

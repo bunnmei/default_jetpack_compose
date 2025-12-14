@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+/key.properties
+
+/app/src/develop/*
+/app/src/product/*

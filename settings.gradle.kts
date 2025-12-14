@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "DefaultJetpackCompose"
 include(":app")
- 
+include(":feature:compass")
+include(":feature:login")
