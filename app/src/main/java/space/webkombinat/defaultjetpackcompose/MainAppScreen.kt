@@ -15,6 +15,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -25,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.google.firebase.auth.FirebaseAuth
 import space.webkombinat.compass.CompassScreen
+import space.webkombinat.compass.CompassViewModel
 import space.webkombinat.defaultjetpackcompose.R
 import space.webkombinat.defaultjetpackcompose.components.BottomNavBar
 import space.webkombinat.defaultjetpackcompose.data.BottomNavigationItems
@@ -87,7 +89,8 @@ fun MainAppScreen(modifier: Modifier = Modifier) {
                 startDestination = BottomNavigationItems.Compass.route
             ) {
                 composable(BottomNavigationItems.Compass.route) {
-                    CompassScreen()
+                    val vm: CompassViewModel = viewModel()
+                    CompassScreen(vm = vm)
                 }
 
                 loginScreens(navCont = navController)
