@@ -33,10 +33,10 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file(keyProperties.getProperty("storeFile") ?: "")
-            storePassword = keyProperties.getProperty("storePassword") ?: ""
-            keyAlias = keyProperties.getProperty("keyAlias") ?: ""
-            keyPassword = keyProperties.getProperty("keyPassword") ?: ""
+            storeFile = file(keyProperties.getProperty("storeFile"))
+            storePassword = keyProperties.getProperty("storePassword")
+            keyAlias = keyProperties.getProperty("keyAlias")
+            keyPassword = keyProperties.getProperty("keyPassword")
         }
     }
 
@@ -60,6 +60,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
