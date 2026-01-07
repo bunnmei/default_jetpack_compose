@@ -4,11 +4,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -106,14 +108,45 @@ fun MainAppScreen(modifier: Modifier = Modifier) {
                 }
 
                 composable(route = BottomNavigationItems.Level.route) {
+
+                    val vm: FlowManyViewModel = viewModel()
+                    val data_a by vm.a_data.collectAsState()
+                    val data_b by vm.b_data.collectAsState()
+                    val data_c by vm.c_data.collectAsState()
+                    val data_d by vm.d_data.collectAsState()
+                    val data_e by vm.e_data.collectAsState()
+                    val data_f by vm.f_data.collectAsState()
+                    val data_g by vm.g_data.collectAsState()
+                    val data_h by vm.h_data.collectAsState()
+                    val data_i by vm.i_data.collectAsState()
+                    val data_j by vm.j_data.collectAsState()
+
+
+
                     Column(
                         modifier = modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        Text("Level")
+                        println("reCompose")
+                        Button(onClick = {
+                            vm.update()
+                        }) { }
+
+                        Text("${data_a}")
+                        Text("${data_b}")
+                        Text("${data_c}")
+                        Text("${data_d}")
+                        Text("${data_e}")
+                        Text("${data_f}")
+                        Text("${data_g}")
+                        Text("${data_h}")
+                        Text("${data_i}")
+                        Text("${data_j}")
                     }
                 }
+
+
             }
         }
     }
