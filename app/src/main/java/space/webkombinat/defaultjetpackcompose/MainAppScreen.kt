@@ -45,6 +45,7 @@ fun MainAppScreen(modifier: Modifier = Modifier) {
         BottomNavigationItems.Login,
         BottomNavigationItems.Mapbox,
         BottomNavigationItems.Level,
+        BottomNavigationItems.Alert
     )
     val backStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry.value?.destination?.route
@@ -146,7 +147,9 @@ fun MainAppScreen(modifier: Modifier = Modifier) {
                     }
                 }
 
-
+                composable(route = BottomNavigationItems.Alert.route) {
+                    AlertScreen()
+                }
             }
         }
     }

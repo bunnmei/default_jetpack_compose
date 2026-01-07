@@ -2,6 +2,7 @@ package space.webkombinat.defaultjetpackcompose.data
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Login
+import androidx.compose.material.icons.filled.AddAlert
 import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.Login
 import androidx.compose.material.icons.filled.Map
@@ -17,5 +18,7 @@ sealed class BottomNavigationItems(
     object Login: BottomNavigationItems(route = "login", icon = Icons.AutoMirrored.Filled.Login, label = "login")
     object Mapbox: BottomNavigationItems(route = "mapbox", icon = Icons.Default.Map, label = "mapbox")
     object Level: BottomNavigationItems(route = "level", icon = Icons.Default.VerticalAlignCenter, label = "level")
+    object Alert: BottomNavigationItems(route = "alert", icon = Icons.Default.AddAlert, label = "alart")
+
 //    object Level: BottomNavigationItems(route = "level", icon = Icons.Default.VerticalAlignCenter, label = "level")
 }
